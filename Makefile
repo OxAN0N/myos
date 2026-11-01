@@ -11,7 +11,7 @@
 #   gmake check        크기·SSE 혼입·포맷·정적 분석·복잡도 (pre-commit 훅이 실행)
 #   gmake disasm       섹션 주소 출력 + build/kernel.lst에 소스 섞인 디스어셈블
 #   gmake disk         두 번째 디스크 build/disk.img 64MB (W17부터)
-#   변수: SMP=4  DEBUG=1(-Og)  ACCEL=hvf(Intel 맥, 디버깅엔 쓰지 말 것)
+#   변수: SMP=4  DEBUG=1(-Og)  ACCEL=(Apple Silicon은 비워 둠: TCG만 가능)
 
 CROSS   ?= x86_64-elf-
 CC      := $(CROSS)gcc
