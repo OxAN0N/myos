@@ -42,7 +42,7 @@ build/os.img = mbr.bin(512B) + kernel.bin + 빈 섹터 1개
    MBR 맨 위에 `org 0x7c00`, `%include "layout.inc"`, 맨 끝에 `times 510-($-$$) db 0`과 `dw 0xAA55`.
    읽을 섹터 수는 `KERNEL_SECTORS` 이름으로 쓰면 Makefile이 넣어 줍니다(run-mbr에서는 1).
 2. Day 5에 `boot/entry64.asm`을 만들면(`section .boot`, `bits 32`, `global _start32`) `gmake run`이 전체 이미지를 씁니다.
-3. 디버깅: 터미널 1에서 `gmake debug`, 터미널 2에서 `gmake gdb` → `set architecture i8086` → `b *0x7c00` → `c`.
+3. 디버깅: 터미널 1에서 `gmake debug`, 터미널 2에서 `gmake gdb` → `b *0x7c00` → `c`. 16비트 명령은 GDB `x/i` 대신 `monitor x /4i $pc`로 봅니다(GDB는 64비트 규칙으로 풀어 틀림).
 4. 막히면 `gmake trace` 후 `build/qemu.log`의 마지막 예외 줄을 보고, 2시간 규칙(PLAN.md)을 지킵니다.
 
 ## 테스트 규칙 (W5부터)
